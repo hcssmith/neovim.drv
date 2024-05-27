@@ -25,9 +25,6 @@
   in {
     formatter = forAllSystems (system: nixpkgsFor.${system}.alejandra);
     overlays.default = final: prev: {
-      test = prev.writeShellScriptBin "test" ''
-        echo test
-      '';
       neovim = let
         pkgs = prev;
         vimPlugins = pkgs.vimPlugins;
@@ -45,7 +42,7 @@
             tree-sitter
           ];
           config = {
-            colourscheme = "retrobox";
+            colourscheme = "cyberdream";
             globals.mapleader = " ";
             opts = {
               backup = false;
@@ -81,6 +78,7 @@
             ];
             plugins = nixpkgs.lib.flatten [
               (import ./plugins/cmp.nix {inherit vimPlugins pkgs;})
+              (import ./plugins/colourschemes.nix {inherit vimPlugins;})
               (import ./plugins/git_worktree.nix {inherit vimPlugins;})
               (import ./plugins/gitsigns.nix {inherit vimPlugins;})
               (import ./plugins/harpoon.nix {inherit vimPlugins;})
@@ -104,8 +102,8 @@
     packages = forAllSystems (system: let
       pkgs = nixpkgsFor.${system};
     in {
-      test = pkgs.test;
       neovim = pkgs.neovim;
+      default = pkgs.neovim;
     });
   };
 }
