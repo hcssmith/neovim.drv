@@ -12,6 +12,8 @@ configuration.
 - Using telescope create a function to show optional plugins and load from a list.
 - Setup additional LSP servers. (Lua / Bash / Odin)
 - Setup github CI to build app-image on major release tags.
+- Work through `checkhealth` to remove all warnings & errors
+- Profile start times.
 
 ## Usage
 In order to use this flake you can either run `nix run
