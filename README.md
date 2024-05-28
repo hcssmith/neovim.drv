@@ -10,7 +10,7 @@ configuration.
 
 ## TODO
 - Using telescope create a function to show optional plugins and load from a list.
-- Setup additional LSP servers.
+- Setup additional LSP servers. (Lua / Bash / Odin)
 - Setup github CI to build app-image on major release tags.
 
 ## Usage
