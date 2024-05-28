@@ -36,7 +36,10 @@
             alejandra
             fd
             fswatch
+            lua-language-server
             nixd
+            nodePackages.bash-language-server
+            ols
             ripgrep
             sqlite
             tree-sitter
@@ -60,12 +63,10 @@
             };
             lsp = {
               servers = [
-                {
-                  server_name = "nixd";
-                  settings = {
-                    formatting.command = ["alejandra"];
-                  };
-                }
+                (import ./lsp/nixd.nix)
+                (import ./lsp/bash.nix)
+                (import ./lsp/odin.nix)
+                (import ./lsp/lua.nix)
               ];
             };
             autogroups = [

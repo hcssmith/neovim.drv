@@ -162,17 +162,19 @@
       if capabilities == null
       then _capabilities
       else capabilities;
-    srv_config = neovim-utils.toLuaObject {
-      name = name;
-      extraOptions =
-        {
-          settings.${name} = settings;
-        }
-        // {
-          on_attach = on_attach_func;
-          capabilities = capabilities_func;
-        };
-    };
+    srv_config =
+      neovim-utils.toLuaObject {
+        name = name;
+        extraOptions =
+          {
+            settings.${name} = settings;
+          }
+          // {
+            on_attach = on_attach_func;
+            capabilities = capabilities_func;
+          };
+      }
+      + ",";
   };
 
   setupLsp = {servers ? [], ...}: (
