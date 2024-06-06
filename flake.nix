@@ -1,12 +1,11 @@
 {
-  description = "A very basic flake";
+  description = "My neovim derivation.";
 
   inputs = {
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-lib.url = "github:hcssmith/flake-lib";
     application-builders.url = "github:hcssmith/application-builders";
-    #application-builders.url = "git+file:///home/hcssmith/Projects/application-builders";
   };
 
   outputs = {
@@ -83,7 +82,10 @@
               (import ./plugins/harpoon.nix {inherit vimPlugins;})
               (import ./plugins/lsp.nix {inherit vimPlugins;})
               (import ./plugins/lualine.nix {inherit vimPlugins;})
-              (import ./plugins/luasnip.nix {inherit vimPlugins pkgs;})
+              (import ./plugins/luasnip.nix {
+                inherit vimPlugins pkgs;
+                lib = application-builders.lib;
+              })
               (import ./plugins/macro.nix {inherit pkgs;})
               (import ./plugins/neogit.nix {inherit pkgs;})
               (import ./plugins/noice.nix {inherit vimPlugins pkgs;})

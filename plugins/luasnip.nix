@@ -1,8 +1,13 @@
 {
   vimPlugins,
   pkgs,
+  lib,
   ...
-}: {
+}: let
+  my_snippets = {
+    paths = ../snippets;
+  };
+in {
   pkg = vimPlugins.luasnip;
   name = "luasnip";
   deps = [
@@ -14,7 +19,7 @@
   };
   extraConfig = ''
     require("luasnip.loaders.from_vscode").lazy_load()
-    require("luasnip.loaders.from_lua").load({paths = "../snippets"})
+    require("luasnip.loaders.from_lua").load(${lib.lua-utils.toLuaObject my_snippets})
   '';
   keymaps = [
     {

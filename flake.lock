@@ -6,11 +6,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1717710240,
-        "narHash": "sha256-xmqI7LIoJnzRsTsS6m2cHqHMVuTg+ST75G95g7zVdrU=",
+        "lastModified": 1717712599,
+        "narHash": "sha256-DZKw3si3J8zkqxW4LEupsLyHHCUUtmfEcvql3lZ60eE=",
         "owner": "hcssmith",
         "repo": "application-builders",
-        "rev": "6d55bbc5cfe375f1fe548b8ae5b6b85856a401f7",
+        "rev": "2848ff4f97b87e3706e97d347b753547855638d1",
         "type": "github"
       },
       "original": {
