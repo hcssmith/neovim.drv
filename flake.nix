@@ -4,33 +4,30 @@
   inputs = {
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    flake-lib.url = "github:hcssmith/flake-lib";
+    application-builders.url = "github:hcssmith/application-builders";
   };
 
   outputs = {
     self,
     nixpkgs,
     neovim-nightly-overlay,
+    flake-lib,
+    application-builders,
     ...
-  }: let
-    supportedSystems = [
-      "x86_64-linux"
-    ];
-
-    overlays = [
-      neovim-nightly-overlay.overlays.default
-      self.overlays.default
-    ];
-    lib = import ./lib {inherit nixpkgs supportedSystems overlays;};
-    inherit (lib) forAllSystems nixpkgsFor mkNeovimWrap;
-  in {
-    formatter = forAllSystems (system: nixpkgsFor.${system}.alejandra);
-    overlays.default = final: prev: {
-      neovim = let
-        pkgs = prev;
-        vimPlugins = pkgs.vimPlugins;
+  }:
+    flake-lib.lib.mkApp {
+      inherit self;
+      name = "neovim";
+      overlays = [
+        self.overlays.default
+        neovim-nightly-overlay.overlays.default
+      ];
+      drv = p: let
+        vimPlugins = p.vimPlugins;
+        pkgs = p;
       in
-        mkNeovimWrap {
-          nixpkgs = pkgs;
+        application-builders.lib.mkNeovim {inherit pkgs;} {
           neovim = pkgs.neovim;
           extraPackages = with pkgs; [
             alejandra
@@ -78,6 +75,7 @@
               (import ./autocmds/utils.nix)
             ];
             plugins = nixpkgs.lib.flatten [
+              {pkg = vimPlugins.vim-startuptime;}
               (import ./plugins/cmp.nix {inherit vimPlugins pkgs;})
               (import ./plugins/colourschemes.nix {inherit vimPlugins;})
               (import ./plugins/git_worktree.nix {inherit vimPlugins;})
@@ -100,11 +98,4 @@
           };
         };
     };
-    packages = forAllSystems (system: let
-      pkgs = nixpkgsFor.${system};
-    in {
-      neovim = pkgs.neovim;
-      default = pkgs.neovim;
-    });
-  };
 }

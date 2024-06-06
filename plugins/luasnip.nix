@@ -2,12 +2,7 @@
   vimPlugins,
   pkgs,
   ...
-}: let
-  neovim-utils = import ../lib/neovim-utils.nix {nixpkgs = pkgs;};
-  my_snippets = {
-    paths = ../snippets;
-  };
-in rec {
+}: {
   pkg = vimPlugins.luasnip;
   name = "luasnip";
   deps = [
@@ -19,7 +14,7 @@ in rec {
   };
   extraConfig = ''
     require("luasnip.loaders.from_vscode").lazy_load()
-    require("luasnip.loaders.from_lua").load(${neovim-utils.toLuaObject my_snippets})
+    require("luasnip.loaders.from_lua").load({paths = "../snippets"})
   '';
   keymaps = [
     {
