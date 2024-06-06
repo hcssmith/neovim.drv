@@ -6,6 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-lib.url = "github:hcssmith/flake-lib";
     application-builders.url = "github:hcssmith/application-builders";
+    #application-builders.url = "git+file:///home/hcssmith/Projects/application-builders";
   };
 
   outputs = {
@@ -25,9 +26,9 @@
       ];
       drv = p: let
         vimPlugins = p.vimPlugins;
-        pkgs = p;
       in
-        application-builders.lib.mkNeovim {inherit pkgs;} {
+        application-builders.lib.mkNeovim rec {
+          pkgs = p;
           neovim = pkgs.neovim;
           extraPackages = with pkgs; [
             alejandra
@@ -42,7 +43,7 @@
             tree-sitter
           ];
           config = {
-            colourscheme = "cyberdream";
+            colourscheme = "katy";
             globals.mapleader = " ";
             opts = {
               backup = false;
@@ -75,7 +76,6 @@
               (import ./autocmds/utils.nix)
             ];
             plugins = nixpkgs.lib.flatten [
-              {pkg = vimPlugins.vim-startuptime;}
               (import ./plugins/cmp.nix {inherit vimPlugins pkgs;})
               (import ./plugins/colourschemes.nix {inherit vimPlugins;})
               (import ./plugins/git_worktree.nix {inherit vimPlugins;})
