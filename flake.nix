@@ -19,16 +19,12 @@
     flake-lib.lib.mkApp {
       inherit self;
       name = "neovim";
-      overlays = [
-        self.overlays.default
-        neovim-nightly-overlay.overlays.default
-      ];
       drv = p: let
         vimPlugins = p.vimPlugins;
       in
         application-builders.lib.mkNeovim rec {
           pkgs = p;
-          neovim = pkgs.neovim;
+          neovim = neovim-nightly-overlay.packages.${p.system}.neovim;
           extraPackages = with pkgs; [
             alejandra
             fd
