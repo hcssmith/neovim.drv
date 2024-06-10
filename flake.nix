@@ -42,7 +42,7 @@
             tree-sitter
           ];
           config = {
-            colourscheme = "katy";
+            colourscheme = "chalk";
             globals.mapleader = " ";
             opts = {
               backup = false;
@@ -75,6 +75,7 @@
               (import ./autocmds/utils.nix)
             ];
             plugins = nixpkgs.lib.flatten [
+              {pkg = vimPlugins.vim-tmux-navigator;}
               (import ./plugins/cmp.nix {inherit vimPlugins pkgs;})
               (import ./plugins/colourschemes.nix {inherit vimPlugins;})
               (import ./plugins/git_worktree.nix {inherit vimPlugins;})
