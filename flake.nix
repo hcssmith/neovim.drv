@@ -2,10 +2,20 @@
   description = "My neovim derivation.";
 
   inputs = {
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    flake-lib.url = "github:hcssmith/flake-lib";
-    application-builders.url = "github:hcssmith/application-builders";
+    #nixpkgs.url = "git+file:///home/hcssmith/Projects/nixpkgs";
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    flake-lib = {
+      url = "github:hcssmith/flake-lib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    application-builders = {
+      url = "github:hcssmith/application-builders";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -72,6 +82,14 @@
             ];
             plugins = nixpkgs.lib.flatten [
               {pkg = vimPlugins.vim-tmux-navigator;}
+              {
+                pkg = vimPlugins.nvim-nu;
+                name = "nu";
+                #opts = {use_lsp_features = false;};
+                deps = [
+                  {pkg = vimPlugins.none-ls-nvim;}
+                ];
+              }
               (import ./plugins/cmp.nix {inherit vimPlugins pkgs;})
               (import ./plugins/colourschemes.nix {inherit vimPlugins;})
               (import ./plugins/git_worktree.nix {inherit vimPlugins;})
@@ -88,7 +106,7 @@
               (import ./plugins/noice.nix {inherit vimPlugins pkgs;})
               (import ./plugins/nvim-tree.nix {inherit vimPlugins;})
               (import ./plugins/telescope.nix {inherit vimPlugins pkgs;})
-              (import ./plugins/treesitter.nix {inherit vimPlugins;})
+              (import ./plugins/treesitter.nix {inherit vimPlugins pkgs;})
             ];
             keymaps = nixpkgs.lib.flatten [
               (import ./keybind/movement.nix)
