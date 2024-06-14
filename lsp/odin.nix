@@ -1,1 +1,4 @@
-{server_name = "ols";}
+{pkgs}: {
+  server_name = "ols";
+  package = pkgs.ols;
+}

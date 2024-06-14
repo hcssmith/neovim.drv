@@ -38,12 +38,7 @@
           neovim = neovim-nightly-overlay.packages.${p.system}.neovim;
           extraPackages = with pkgs; [
             alejandra
-            lua-language-server
-            nixd
-            nodePackages.bash-language-server
-            ols
             sqlite
-            tree-sitter
           ];
           config = {
             colourscheme = "chalk";
@@ -68,10 +63,10 @@
             };
             lsp = {
               servers = [
-                (import ./lsp/nixd.nix)
-                (import ./lsp/bash.nix)
-                (import ./lsp/odin.nix)
-                (import ./lsp/lua.nix)
+                (import ./lsp/nixd.nix {inherit pkgs;})
+                (import ./lsp/bash.nix {inherit pkgs;})
+                (import ./lsp/odin.nix {inherit pkgs;})
+                (import ./lsp/lua.nix {inherit pkgs;})
               ];
             };
             autogroups = [
@@ -87,16 +82,12 @@
               {
                 pkg = vimPlugins.nvim-nu;
                 name = "nu";
-                deps = [
-                  {pkg = vimPlugins.none-ls-nvim;}
-                ];
               }
               (import ./plugins/cmp.nix {inherit vimPlugins pkgs;})
               (import ./plugins/colourschemes.nix {inherit vimPlugins;})
               (import ./plugins/git_worktree.nix {inherit vimPlugins;})
               (import ./plugins/gitsigns.nix {inherit vimPlugins;})
               (import ./plugins/harpoon.nix {inherit vimPlugins;})
-              (import ./plugins/lsp.nix {inherit vimPlugins;})
               (import ./plugins/lualine.nix {inherit vimPlugins;})
               (import ./plugins/luasnip.nix {
                 inherit vimPlugins pkgs;
