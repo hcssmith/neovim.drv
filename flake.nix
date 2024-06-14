@@ -14,6 +14,7 @@
     };
     application-builders = {
       url = "github:hcssmith/application-builders";
+      #url = "git+file:///home/hcssmith/Projects/application-builders";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -37,13 +38,10 @@
           neovim = neovim-nightly-overlay.packages.${p.system}.neovim;
           extraPackages = with pkgs; [
             alejandra
-            fd
-            fswatch
             lua-language-server
             nixd
             nodePackages.bash-language-server
             ols
-            ripgrep
             sqlite
             tree-sitter
           ];
@@ -63,6 +61,10 @@
               tabstop = 2;
               termguicolors = true;
               wrap = false;
+            };
+            treesitter.extra_grammars = import ./tree-sitter/grammars.nix {
+              inherit pkgs;
+              inherit (pkgs.tree-sitter) buildGrammar;
             };
             lsp = {
               servers = [
@@ -85,7 +87,6 @@
               {
                 pkg = vimPlugins.nvim-nu;
                 name = "nu";
-                #opts = {use_lsp_features = false;};
                 deps = [
                   {pkg = vimPlugins.none-ls-nvim;}
                 ];
@@ -106,7 +107,6 @@
               (import ./plugins/noice.nix {inherit vimPlugins pkgs;})
               (import ./plugins/nvim-tree.nix {inherit vimPlugins;})
               (import ./plugins/telescope.nix {inherit vimPlugins pkgs;})
-              (import ./plugins/treesitter.nix {inherit vimPlugins pkgs;})
             ];
             keymaps = nixpkgs.lib.flatten [
               (import ./keybind/movement.nix)
