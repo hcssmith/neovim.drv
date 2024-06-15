@@ -77,11 +77,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1717523568,
-        "narHash": "sha256-axjGOdZNjCdpnsYxdt7HXWySDKVEKrYjy2lTwXB7Li0=",
+        "lastModified": 1718467432,
+        "narHash": "sha256-5kOdjmvf7WrA37ScJIpRk6av0Io13tH4pUQUi+w78Ro=",
         "owner": "hcssmith",
         "repo": "flake-lib",
-        "rev": "dfd3fc59c7a820f170cf2562481f3175cc79b9a6",
+        "rev": "d4c4df172060142edc75b6f9fef374087b29b0d1",
         "type": "github"
       },
       "original": {
