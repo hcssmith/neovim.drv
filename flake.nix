@@ -2,7 +2,7 @@
   description = "My neovim derivation.";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable";
     #nixpkgs.url = "git+file:///home/hcssmith/Projects/nixpkgs";
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
@@ -41,7 +41,7 @@
             sqlite
           ];
           config = {
-            colourscheme = "chalk";
+            colourscheme = "ayu-mirage";
             globals.mapleader = " ";
             opts = {
               backup = false;
@@ -78,6 +78,7 @@
               (import ./autocmds/utils.nix)
             ];
             plugins = nixpkgs.lib.flatten [
+              {pkg = vimPlugins.transparent-nvim;}
               {pkg = vimPlugins.vim-tmux-navigator;}
               {
                 pkg = vimPlugins.nvim-nu;
