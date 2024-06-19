@@ -78,7 +78,16 @@
               (import ./autocmds/utils.nix)
             ];
             plugins = nixpkgs.lib.flatten [
-              {pkg = vimPlugins.transparent-nvim;}
+              {
+                pkg = vimPlugins.transparent-nvim;
+                name = "transparent";
+                opts = {
+                  extra_groups = ["NormalFloat" "NvimTreeNormal"];
+                };
+                extraConfig = ''
+                  require('transparent').clear_prefix('lualine')
+                '';
+              }
               {pkg = vimPlugins.vim-tmux-navigator;}
               {
                 pkg = vimPlugins.nvim-nu;
