@@ -47,6 +47,7 @@
               backup = false;
               foldexpr = "nvim_treesitter#foldexpr()";
               foldmethod = "expr";
+              foldlevel = 99;
               number = true;
               relativenumber = true;
               scrolloff = 8;
