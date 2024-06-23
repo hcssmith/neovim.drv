@@ -83,7 +83,16 @@
                 pkg = vimPlugins.transparent-nvim;
                 name = "transparent";
                 opts = {
-                  extra_groups = ["NormalFloat" "NvimTreeNormal" "TabLine" "TabLineSel" "TabLineFill" "Folded"];
+                  extra_groups = [
+                    "Normal"
+                    "NormalFloat"
+                    "NvimTreeNormal"
+                    "TabLine"
+                    "TabLineSel"
+                    "TabLineFill"
+                    "Folded"
+                    "RecordingSymbol"
+                  ];
                 };
                 extraConfig = ''
                   require('transparent').clear_prefix('lualine')

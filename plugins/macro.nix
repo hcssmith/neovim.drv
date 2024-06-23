@@ -3,12 +3,12 @@ with pkgs; {
   pkg = vimUtils.buildVimPlugin rec {
     name = "neocomposor";
     pname = "NeoComposer";
-    version = "b06e8e88e289947937f241f76e86f7c46f4a5805";
+    version = "7636f9f447affe8bd26fee3b0c58fa19d78c62bb";
     src = fetchFromGitHub {
-      owner = "ecthelionvi";
+      owner = "hcssmith";
       repo = "NeoComposer.nvim";
       rev = version;
-      hash = "sha256-AQU+Z7iC7AMm17k7gw7dA0TEmImpJJhZ2rPk8zReJFg=";
+      hash = "sha256-S+2zycIKoIAAQnEyJJLhoe3KbOIl/HpkXus2nDA9OzQ";
     };
   };
   extraConfig = "require('telescope').load_extension('macros')";
