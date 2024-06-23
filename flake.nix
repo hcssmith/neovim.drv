@@ -14,7 +14,6 @@
     };
     application-builders = {
       url = "github:hcssmith/application-builders";
-      #url = "git+file:///home/hcssmith/Projects/application-builders";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
