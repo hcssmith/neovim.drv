@@ -21,29 +21,32 @@
     }
   ];
   extraConfigVim = ''
-    hi clear NeogitDiffDelete
-    hi clear NeogitDiffDeleteCursor
-    hi clear NeogitDiffDeleteHighlight
+      hi clear NeogitDiffDelete
+      hi clear NeogitDiffDeleteCursor
+      hi clear NeogitDiffDeleteHighlight
 
-    hi link NeogitDiffDelete @diff.minus
-    hi link NeogitDiffDeleteCursor @diff.minus
-    hi link NeogitDiffDeleteHighlight @diff.minus
+      hi link NeogitDiffDelete @diff.minus
+      hi link NeogitDiffDeleteCursor @diff.minus
+      hi link NeogitDiffDeleteHighlight @diff.minus
 
 
-    hi clear NeogitDiffAdd
-    hi clear NeogitDiffAddCursor
-    hi clear NeogitDiffAddHighlight
+      hi clear NeogitDiffAdd
+      hi clear NeogitDiffAddCursor
+      hi clear NeogitDiffAddHighlight
 
-    hi link NeogitDiffAdd @diff.plus
-    hi link NeogitDiffAddCursor @diff.plus
-    hi link NeogitDiffAddHighlight @diff.plus
+      hi link NeogitDiffAdd @diff.plus
+      hi link NeogitDiffAddCursor @diff.plus
+      hi link NeogitDiffAddHighlight @diff.plus
 
-    hi clear NeogitHunkHeader
-    hi clear NeogitHunkHeaderCursor
-    hi clear NeogitHunkHeaderHighlight
+      hi clear NeogitHunkHeader
+      hi clear NeogitHunkHeaderCursor
+      hi clear NeogitHunkHeaderHighlight
 
-    hi link NeogitHunkHeader @diff.delta
-    hi link NeogitHunkHeaderCursor @diff.delta
-    hi link NeogitHunkHeaderHighlight @diff.delta
+      hi link NeogitHunkHeader @diff.delta
+      hi link NeogitHunkHeaderCursor @diff.delta
+      hi link NeogitHunkHeaderHighlight @diff.delta
+
+    hi clear NeogitCommitViewHeader
+    hi link NeogitCommitViewHeader @diff.delta
   '';
 }
