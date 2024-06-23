@@ -3,12 +3,12 @@ with pkgs; {
   pkg = vimUtils.buildVimPlugin rec {
     name = "neocomposor";
     pname = "NeoComposer";
-    version = "7636f9f447affe8bd26fee3b0c58fa19d78c62bb";
+    version = "7ecb04d4a1712a6fd7272c1c9482ea878c144588";
     src = fetchFromGitHub {
-      owner = "hcssmith";
+      owner = "ecthelionvi";
       repo = "NeoComposer.nvim";
       rev = version;
-      hash = "sha256-S+2zycIKoIAAQnEyJJLhoe3KbOIl/HpkXus2nDA9OzQ";
+      hash = "sha256-S+2zycIKoIAAQnEyJJLhoe3KbOIl/HpkXus2nDA9OzQ=";
     };
   };
   extraConfig = "require('telescope').load_extension('macros')";
@@ -16,6 +16,9 @@ with pkgs; {
     let g:sqlite_clib_path = '${sqlite.out}/lib/libsqlite3.so'
   '';
   name = "NeoComposer";
+  opts = {
+    queue_most_recent = true;
+  };
   deps = [
     {pkg = vimPlugins.sqlite-lua;}
   ];
