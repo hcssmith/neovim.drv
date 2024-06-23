@@ -79,28 +79,6 @@
               (import ./autocmds/utils.nix)
             ];
             plugins = nixpkgs.lib.flatten [
-              {
-                pkg = vimPlugins.transparent-nvim;
-                name = "transparent";
-                opts = {
-                  extra_groups = [
-                    "Normal"
-                    "NormalFloat"
-                    "NvimTreeNormal"
-                    "TabLine"
-                    "TabLineSel"
-                    "TabLineFill"
-                    "Folded"
-                    "RecordingSymbol"
-                  ];
-                };
-                extraConfig = ''
-                  require('transparent').clear_prefix('lualine')
-                  require('transparent').clear_prefix('neogit')
-                  require('transparent').clear_prefix('gitsigns')
-                  require('transparent').clear_prefix('noice')
-                '';
-              }
               {pkg = vimPlugins.vim-tmux-navigator;}
               {
                 pkg = vimPlugins.nvim-nu;
@@ -121,6 +99,7 @@
               (import ./plugins/noice.nix {inherit vimPlugins pkgs;})
               (import ./plugins/nvim-tree.nix {inherit vimPlugins;})
               (import ./plugins/telescope.nix {inherit vimPlugins pkgs;})
+              (import ./plugins/transparent.nix {inherit vimPlugins;})
             ];
             keymaps = nixpkgs.lib.flatten [
               (import ./keybind/movement.nix)
