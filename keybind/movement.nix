@@ -12,42 +12,42 @@
     mode = ["t"];
   }
   {
-    action = "<Cmd>NvimTmuxNavigateLeft<CR>";
+    action = "<Cmd>TmuxNavigateLeft<CR>";
     lua = false;
     key = "<C-h>";
   }
   {
-    action = "<Cmd>NvimTmuxNavigateDown<CR>";
+    action = "<Cmd>TmuxNavigateDown<CR>";
     lua = false;
     key = "<C-j>";
   }
   {
-    action = "<Cmd>NvimTmuxNavigateUp<CR>";
+    action = "<Cmd>TmuxNavigateUp<CR>";
     lua = false;
     key = "<C-k>";
   }
   {
-    action = "<Cmd>NvimTmuxNavigateRight<CR>";
+    action = "<Cmd>TmuxNavigateRight<CR>";
     lua = false;
     key = "<C-l>";
   }
   {
-    action = "<Cmd>NvimTmuxNavigateLeft<CR>";
+    action = "<Cmd>TmuxNavigateLeft<CR>";
     lua = false;
     key = "<C-Left>";
   }
   {
-    action = "<Cmd>NvimTmuxNavigateDown<CR>";
+    action = "<Cmd>TmuxNavigateDown<CR>";
     lua = false;
     key = "<C-Down>";
   }
   {
-    action = "<Cmd>NvimTmuxNavigateUp<CR>";
+    action = "<Cmd>TmuxNavigateUp<CR>";
     lua = false;
     key = "<C-Up>";
   }
   {
-    action = "<Cmd>NvimTmuxNavigateRight<CR>";
+    action = "<Cmd>TmuxNavigateRight<CR>";
     lua = false;
     key = "<C-Right>";
   }
