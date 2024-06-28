@@ -94,6 +94,7 @@
                 lib = application-builders.lib;
               })
               (import ./plugins/macro.nix {inherit pkgs;})
+              (import ./plugins/markview.nix {inherit pkgs;})
               (import ./plugins/neogit.nix {inherit pkgs;})
               (import ./plugins/noice.nix {inherit vimPlugins pkgs;})
               (import ./plugins/nvim-tree.nix {inherit vimPlugins;})
