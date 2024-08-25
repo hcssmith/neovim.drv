@@ -2,8 +2,9 @@
   description = "My neovim derivation.";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable";
+    #nixpkgs.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable";
     #nixpkgs.url = "git+file:///home/hcssmith/Projects/nixpkgs";
+    nixpkgs.url = "github:hcssmith/nixpkgs";
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
