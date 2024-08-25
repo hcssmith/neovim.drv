@@ -18,5 +18,6 @@
     require('transparent').clear_prefix('neogit')
     require('transparent').clear_prefix('gitsigns')
     require('transparent').clear_prefix('noice')
+    require('transparent').clear_prefix('markview')
   '';
 }
